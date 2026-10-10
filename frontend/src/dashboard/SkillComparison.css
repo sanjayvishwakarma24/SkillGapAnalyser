@@ -1,0 +1,87 @@
+.skill-comparison {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.comparison-header {
+  margin-bottom: 28px;
+}
+
+.comparison-header h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+  color: #111827;
+}
+
+.comparison-header p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.comparison-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.skill-bars {
+  position: relative;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.skill-current {
+  height: 100%;
+  border-radius: 999px;
+  background: #4f46e5;
+  transition: width 0.5s ease;
+}
+
+.skill-required {
+  position: relative;
+  height: 0;
+}
+
+.required-marker {
+  position: absolute;
+  top: -13px;
+  width: 3px;
+  height: 16px;
+  border-radius: 4px;
+  background: #111827;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 600px) {
+  .skill-comparison {
+    padding: 20px;
+  }
+
+  .skill-info {
+    font-size: 13px;
+  }
+}

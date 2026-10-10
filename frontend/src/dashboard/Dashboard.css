@@ -1,0 +1,35 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 50px;
+}
+
+.dashboard-main h1 {
+  margin-bottom: 12px;
+  font-size: 36px;
+  color: #111827;
+}
+
+.dashboard-main p {
+  font-size: 17px;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .dashboard-main {
+    padding: 30px 20px;
+  }
+
+  .dashboard-main h1 {
+    font-size: 28px;
+  }
+}
