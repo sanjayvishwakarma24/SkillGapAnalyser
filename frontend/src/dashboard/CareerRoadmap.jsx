@@ -1,62 +1,53 @@
+
 import "./CareerRoadmap.css";
+
 function CareerRoadmap() {
-  const roadmap = [
-    {
-      step: "01",
-      title: "Strengthen JavaScript",
-      description:
-        "Improve JavaScript fundamentals, ES6+, asynchronous programming, and DOM concepts.",
-      duration: "2 Weeks",
-    },
-    {
-      step: "02",
-      title: "Master React.js",
-      description:
-        "Build practical React projects and learn components, hooks, state management, and APIs.",
-      duration: "3 Weeks",
-    },
-    {
-      step: "03",
-      title: "Learn Backend Development",
-      description:
-        "Build a foundation in Node.js, REST APIs, authentication, and server-side development.",
-      duration: "4 Weeks",
-    },
-    {
-      step: "04",
-      title: "Practice Database & SQL",
-      description:
-        "Learn relational databases, SQL queries, database design, and CRUD operations.",
-      duration: "2 Weeks",
-    },
-  ];
+  const savedResult = sessionStorage.getItem("skillGapAnalysis");
+  const result = savedResult ? JSON.parse(savedResult) : null;
+  const roadmap = result?.learning_roadmap ?? [];
 
   return (
     <section className="career-roadmap" id="career-roadmap">
       <div className="roadmap-header">
         <div>
           <h2>Personalized Career Roadmap</h2>
-          <p>
-            A recommended learning path based on your current skill gaps.
-          </p>
+          <p>Your recommended learning path based on your skill gaps.</p>
         </div>
       </div>
 
       <div className="roadmap-list">
-        {roadmap.map((item) => (
-          <div className="roadmap-item" key={item.step}>
-            <div className="roadmap-step">{item.step}</div>
-
-            <div className="roadmap-content">
-              <div className="roadmap-title">
-                <h3>{item.title}</h3>
-                <span>{item.duration}</span>
+        {roadmap.length > 0 ? (
+          roadmap.map((item, index) => (
+            <div className="roadmap-item" key={item.skill}>
+              <div className="roadmap-step">
+                {String(item.learning_order ?? index + 1).padStart(2, "0")}
               </div>
 
-              <p>{item.description}</p>
+              <div className="roadmap-content">
+                <div className="roadmap-title">
+                  <h3>{item.skill}</h3>
+                  <span>{item.estimated_duration || "Duration not specified"}</span>
+                </div>
+
+                <p>Priority: {item.priority || "Not specified"}</p>
+                <p>
+                  Topics: {item.topics?.length
+                    ? item.topics.join(", ")
+                    : "Topics not available"}
+                </p>
+                <p>
+                  Mini project: {item.mini_project || "Not available"}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>
+            {result
+              ? "No roadmap needed for this role."
+              : "Run an analysis first to see your roadmap."}
+          </p>
+        )}
       </div>
     </section>
   );

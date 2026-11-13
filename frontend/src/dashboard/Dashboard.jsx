@@ -14,7 +14,7 @@ function Dashboard() {
     <div className="dashboard-layout">
       <Sidebar />
 
-      <main className="dashboard-main">
+      <main className="dashboard-main" id="dashboard">
         <DashboardHeader />
         <SkillOverview />
         <SkillComparison />

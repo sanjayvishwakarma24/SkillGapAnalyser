@@ -1,4 +1,5 @@
 import "./Sidebar.css";
+
 function Sidebar() {
   return (
     <aside className="sidebar">
@@ -13,7 +14,7 @@ function Sidebar() {
           Dashboard
         </a>
 
-        <a href="#resume-analysis">
+        <a href="/#analyzer">
           Resume Analysis
         </a>
 
@@ -23,6 +24,10 @@ function Sidebar() {
 
         <a href="#career-roadmap">
           Career Roadmap
+        </a>
+
+        <a href="#recent-analysis">
+          Recent Analysis
         </a>
 
         <a href="#profile">

@@ -12,8 +12,8 @@ function HowItWorks() {
         </h2>
 
         <p>
-          Skill Gap Analyzer turns your resume and career goals into
-          clear, actionable insights.
+          SkillGap AI analyzes your resume and career goals to
+          provide clear and actionable career insights.
         </p>
       </div>
 
@@ -21,48 +21,40 @@ function HowItWorks() {
         <div className="step-card">
           <div className="step-number">01</div>
           <div className="step-icon">📄</div>
-
           <h3>Upload Resume</h3>
-
           <p>
             Upload your resume and let the system extract your
-            skills and experience.
+            skills and academic information.
           </p>
         </div>
 
         <div className="step-card">
           <div className="step-number">02</div>
           <div className="step-icon">🧠</div>
-
           <h3>Analyze Skills</h3>
-
           <p>
-            NLP analyzes your resume and identifies your existing
-            technical skills.
+            The system identifies technical skills in your resume
+            using a predefined skill-matching process.
           </p>
         </div>
 
         <div className="step-card">
           <div className="step-number">03</div>
           <div className="step-icon">🎯</div>
-
           <h3>Find Skill Gaps</h3>
-
           <p>
-            Your skills are compared with the requirements of your
-            target career role.
+            Your detected skills are compared with the requirements
+            of your selected career role.
           </p>
         </div>
 
         <div className="step-card">
           <div className="step-number">04</div>
           <div className="step-icon">🚀</div>
-
           <h3>Get Your Roadmap</h3>
-
           <p>
-            Receive a personalized learning roadmap based on the
-            skills you need to develop.
+            Receive a learning roadmap based on the skills you
+            need to develop for your target career.
           </p>
         </div>
       </div>

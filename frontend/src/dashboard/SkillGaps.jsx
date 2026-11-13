@@ -1,67 +1,50 @@
+
 import "./SkillGaps.css";
+
 function SkillGaps() {
-  const gaps = [
-    {
-      name: "Node.js",
-      current: 45,
-      required: 75,
-      priority: "High",
-    },
-    {
-      name: "Backend Development",
-      current: 40,
-      required: 70,
-      priority: "High",
-    },
-    {
-      name: "Database & SQL",
-      current: 55,
-      required: 75,
-      priority: "Medium",
-    },
-    {
-      name: "REST APIs",
-      current: 50,
-      required: 70,
-      priority: "Medium",
-    },
-  ];
+  const savedResult = sessionStorage.getItem("skillGapAnalysis");
+  const result = savedResult ? JSON.parse(savedResult) : null;
+
+  const gaps = result?.missing_skills ?? [];
 
   return (
     <section className="skill-gaps" id="skill-gaps">
       <div className="skill-gaps-header">
         <div>
           <h2>Skill Gaps</h2>
-          <p>Focus on these skills to improve your career readiness.</p>
+          <p>
+            Focus on these skills to improve your career readiness.
+          </p>
         </div>
       </div>
 
       <div className="skill-gaps-list">
-        {gaps.map((gap) => (
-          <div className="gap-item" key={gap.name}>
-            <div className="gap-info">
-              <div>
-                <h3>{gap.name}</h3>
-                <p>
-                  Current: {gap.current}% · Required: {gap.required}%
-                </p>
+        {gaps.length > 0 ? (
+          gaps.map((skill, index) => (
+            <div className="gap-item" key={skill}>
+              <div className="gap-info">
+                <div>
+                  <h3>{skill}</h3>
+                  <p>Not detected in your resume</p>
+                </div>
+
+                <span
+                  className={`priority ${
+                    index < 2 ? "high" : "medium"
+                  }`}
+                >
+                  {index < 2 ? "High Priority" : "Medium Priority"}
+                </span>
               </div>
-
-              <span className={`priority ${gap.priority.toLowerCase()}`}>
-                {gap.priority}
-              </span>
             </div>
-
-            <div className="gap-progress">
-              <div
-                className="gap-progress-fill"
-                style={{
-                  width: `${gap.current}%`,
-                }}
-              ></div>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>
+            {result
+              ? "No missing skills for this role."
+              : "Run an analysis first to see your skill gaps."}
+          </p>
+        )}
       </div>
     </section>
   );

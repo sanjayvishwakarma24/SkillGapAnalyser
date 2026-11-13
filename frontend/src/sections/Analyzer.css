@@ -1,28 +1,38 @@
+
+/* =========================
+   ANALYZER SECTION
+========================= */
+
 .analyzer {
   padding: 110px 6%;
   background: #ffffff;
+  scroll-margin-top: 80px;
 }
 
 .analyzer-container {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
 .upload-box,
 .role-box {
+  min-width: 0;
+  box-sizing: border-box;
   padding: 34px;
 
   border: 1px solid #e2e8f0;
   border-radius: 24px;
 
   background: #ffffff;
-
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
 }
+
+/* UPLOAD BOX */
 
 .upload-box {
   display: flex;
@@ -31,7 +41,6 @@
   justify-content: center;
 
   text-align: center;
-
   min-height: 360px;
 
   border-style: dashed;
@@ -46,18 +55,15 @@
   justify-content: center;
 
   margin-bottom: 22px;
-
   border-radius: 18px;
 
   background: #eef2ff;
-
   font-size: 30px;
 }
 
 .upload-box h3,
 .role-box h3 {
   margin-bottom: 10px;
-
   color: #1e293b;
   font-size: 21px;
   font-weight: 700;
@@ -70,10 +76,12 @@
   line-height: 1.7;
 }
 
+/* BUTTONS */
+
 .upload-button,
 .analyze-button {
+  box-sizing: border-box;
   margin-top: 24px;
-
   padding: 13px 22px;
 
   border: none;
@@ -84,7 +92,6 @@
 
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
 
   transition:
@@ -94,11 +101,16 @@
 }
 
 .upload-button:hover,
-.analyze-button:hover {
+.analyze-button:hover:not(:disabled) {
   background: #4f46e5;
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(99, 102, 241, 0.2);
 }
+
+.analyze-button {
+  width: 100%;
+}
+
 .analyze-button:disabled {
   background: #cbd5e1;
   color: #64748b;
@@ -107,18 +119,55 @@
   transform: none;
 }
 
-.analyze-button:disabled:hover {
-  background: #cbd5e1;
-  box-shadow: none;
-  transform: none;
+.upload-button:focus-visible,
+.analyze-button:focus-visible,
+.role-select:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.35);
+  outline-offset: 3px;
 }
+
+/* UPLOAD INFORMATION */
 
 .upload-hint {
   margin-top: 14px;
-
   color: #94a3b8;
   font-size: 12px;
 }
+
+.selected-file {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding: 8px 12px;
+
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #4f46e5;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-error {
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding: 8px 12px;
+
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #dc2626;
+
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* ROLE SELECTION */
 
 .role-box {
   display: flex;
@@ -128,6 +177,7 @@
 
 .role-select {
   width: 100%;
+  box-sizing: border-box;
   margin-top: 28px;
   padding: 14px 16px;
 
@@ -135,12 +185,10 @@
   border-radius: 11px;
 
   outline: none;
-
   background: #ffffff;
   color: #334155;
 
   font-size: 14px;
-
   cursor: pointer;
 
   transition:
@@ -153,68 +201,98 @@
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-.analyze-button {
-  width: 100%;
-}
+/* ANALYSIS RESULT */
 
-@media (max-width: 800px) {
-  .analyzer-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .analyzer {
-    padding: 80px 5%;
-  }
-
-  .upload-box,
-  .role-box {
-    padding: 26px;
-  }
-}
-.selected-file {
-  margin-top: 12px;
-  padding: 8px 12px;
-
-  border-radius: 8px;
-
-  background: #eef2ff;
-  color: #4f46e5;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.file-error {
-  margin-top: 12px;
-  padding: 8px 12px;
-
-  border-radius: 8px;
-
-  background: #fef2f2;
-  color: #dc2626;
-
-  font-size: 13px;
-  font-weight: 600;
-}
 .analysis-success {
-  margin-top: 16px;
-  padding: 10px 14px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding: 18px;
 
   border-radius: 10px;
-
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
 
   color: #15803d;
-
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 1.7;
 
-  text-align: center;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.analysis-success h3,
+.analysis-success h4 {
+  margin-bottom: 12px;
+  color: #166534;
+}
+
+.analysis-success ol {
+  padding-left: 22px;
+}
+
+.analysis-success li {
+  margin-bottom: 14px;
+}
+
+/* TABLET */
+
+@media (max-width: 800px) {
+  .analyzer {
+    padding: 85px 5%;
+  }
+
+  .analyzer-container {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  .upload-box {
+    min-height: 300px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .analyzer {
+    padding: 70px 16px;
+  }
+
+  .analyzer-container {
+    gap: 18px;
+  }
+
+  .upload-box,
+  .role-box {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .upload-box h3,
+  .role-box h3 {
+    font-size: 19px;
+  }
+
+  .upload-box p,
+  .role-box p {
+    font-size: 13px;
+  }
+
+  .upload-button,
+  .analyze-button {
+    width: 100%;
+    padding: 13px 14px;
+  }
+
+  .role-select {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+
+  .analysis-success {
+    padding: 14px;
+  }
 }

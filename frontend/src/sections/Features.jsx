@@ -1,76 +1,69 @@
 import "./Features.css";
 
 function Features() {
+  const features = [
+    {
+      icon: "📄",
+      title: "Resume Analysis",
+      description:
+        "Upload your resume in PDF or DOCX format and extract relevant information.",
+    },
+    {
+      icon: "🧠",
+      title: "Skill Detection",
+      description:
+        "Identify technical skills from your resume using a predefined skill-matching process.",
+    },
+    {
+      icon: "🎯",
+      title: "Skill Gap Detection",
+      description:
+        "Find the skills missing from your profile for your selected career role.",
+    },
+    {
+      icon: "📊",
+      title: "Skill Match Score",
+      description:
+        "View your percentage match based on the skills required for your target role.",
+    },
+    {
+      icon: "🚀",
+      title: "Personalized Roadmap",
+      description:
+        "Get a structured learning roadmap with topics, priorities, and mini-project suggestions.",
+    },
+    {
+      icon: "💼",
+      title: "Career Focused",
+      description:
+        "Explore skill requirements for different career roles and plan your learning journey.",
+    },
+  ];
+
   return (
     <section className="features" id="features">
       <div className="section-heading">
-        <p className="section-tag">POWERFUL FEATURES</p>
+        <p className="section-tag">OUR FEATURES</p>
 
         <h2>
           Everything You Need to
-          <span> Close the Gap.</span>
+          <span> Grow Your Skills.</span>
         </h2>
 
         <p>
-          A smart career analysis system designed to help students
-          understand where they are and what to learn next.
+          Discover your strengths, identify missing skills, and
+          take the next step toward your career goals.
         </p>
       </div>
 
       <div className="features-grid">
-        <div className="feature-card">
-          <div className="feature-icon">📄</div>
-          <h3>Resume Analysis</h3>
-          <p>
-            Extract relevant information and technical skills directly
-            from your resume.
-          </p>
-        </div>
-
-        <div className="feature-card">
-          <div className="feature-icon">🧠</div>
-          <h3>AI Skill Extraction</h3>
-          <p>
-            NLP techniques identify and organize the skills present
-            in your resume.
-          </p>
-        </div>
-
-        <div className="feature-card">
-          <div className="feature-icon">🎯</div>
-          <h3>Skill Gap Detection</h3>
-          <p>
-            Compare your current skills with the requirements of
-            your target career role.
-          </p>
-        </div>
-
-        <div className="feature-card">
-          <div className="feature-icon">📊</div>
-          <h3>Skill Match Score</h3>
-          <p>
-            Get a clear percentage showing how closely your skills
-            match your selected career path.
-          </p>
-        </div>
-
-        <div className="feature-card">
-          <div className="feature-icon">🗺️</div>
-          <h3>Personalized Roadmap</h3>
-          <p>
-            Receive a structured learning sequence based on your
-            identified skill gaps.
-          </p>
-        </div>
-
-        <div className="feature-card">
-          <div className="feature-icon">🚀</div>
-          <h3>Career Focused</h3>
-          <p>
-            Turn your skill analysis into practical next steps for
-            your desired career.
-          </p>
-        </div>
+        {features.map((feature) => (
+          <div className="feature-card" key={feature.title}>
+            <div className="feature-icon">{feature.icon}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -1,50 +1,46 @@
 import "./SkillComparison.css";
+
 function SkillComparison() {
+  const savedResult = sessionStorage.getItem("skillGapAnalysis");
+  const result = savedResult ? JSON.parse(savedResult) : null;
+
+  const matched = result?.matched_skills ?? [];
+  const missing = result?.missing_skills ?? [];
+
   const skills = [
-    { name: "HTML & CSS", current: 90, required: 90 },
-    { name: "JavaScript", current: 75, required: 85 },
-    { name: "React.js", current: 65, required: 80 },
-    { name: "Git & GitHub", current: 70, required: 75 },
-    { name: "Node.js", current: 45, required: 75 },
+    ...matched.map((skill) => ({ skill, status: "Matched" })),
+    ...missing.map((skill) => ({ skill, status: "Missing" })),
   ];
 
   return (
     <section className="skill-comparison">
       <div className="comparison-header">
-        <div>
-          <h2>Skill Comparison</h2>
-          <p>Compare your current skills with your target role requirements.</p>
+        <h2>Skill Comparison</h2>
+        <p>Skills found in your resume compared with the selected role.</p>
+      </div>
+
+      {skills.length ? (
+        <div className="comparison-list">
+          {skills.map(({ skill, status }) => (
+            <div className="skill-row" key={skill}>
+              <div className="skill-info">
+                <span>{skill}</span>
+                <span>{status}</span>
+              </div>
+              <div className="skill-bars">
+                <div className="skill-bar">
+                  <div
+                    className="skill-current"
+                    style={{ width: status === "Matched" ? "100%" : "0%" }}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-
-      <div className="comparison-list">
-        {skills.map((skill) => (
-          <div className="skill-row" key={skill.name}>
-            <div className="skill-info">
-              <span>{skill.name}</span>
-              <span>
-                {skill.current}% / {skill.required}%
-              </span>
-            </div>
-
-            <div className="skill-bars">
-              <div className="skill-bar">
-                <div
-                  className="skill-current"
-                  style={{ width: `${skill.current}%` }}
-                ></div>
-              </div>
-
-              <div className="skill-required">
-                <div
-                  className="required-marker"
-                  style={{ left: `${skill.required}%` }}
-                ></div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      ) : (
+        <p>Run an analysis first to see your skill comparison.</p>
+      )}
     </section>
   );
 }

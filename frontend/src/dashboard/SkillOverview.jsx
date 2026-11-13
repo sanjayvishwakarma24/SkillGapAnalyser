@@ -1,30 +1,36 @@
 import "./SkillOverview.css";
+
 function SkillOverview() {
+  let result = null;
+
+  try {
+    result = JSON.parse(
+      sessionStorage.getItem("skillGapAnalysis") || "null"
+    );
+  } catch {
+    result = null;
+  }
+
+  const match = Number(result?.match_percentage ?? 0);
+  const detected = result?.detected_skills?.length ?? 0;
+  const missing = result?.missing_skills?.length ?? 0;
+
+  const cards = [
+    ["Skill Match", `${match}%`, "Match with selected target role"],
+    ["Skills Found", detected, "Skills detected in your resume"],
+    ["Skill Gaps", missing, "Skills to learn or improve"],
+    ["Target Role", result?.target_role ?? "—", "Selected career role"],
+  ];
+
   return (
     <section className="skill-overview">
-      <div className="overview-card">
-        <span className="overview-label">Skill Match</span>
-        <strong>78%</strong>
-        <p>Overall compatibility</p>
-      </div>
-
-      <div className="overview-card">
-        <span className="overview-label">Skills Found</span>
-        <strong>18</strong>
-        <p>Skills detected</p>
-      </div>
-
-      <div className="overview-card">
-        <span className="overview-label">Skill Gaps</span>
-        <strong>6</strong>
-        <p>Skills to improve</p>
-      </div>
-
-      <div className="overview-card">
-        <span className="overview-label">Career Readiness</span>
-        <strong>72%</strong>
-        <p>Current readiness</p>
-      </div>
+      {cards.map(([label, value, description]) => (
+        <article className="overview-card" key={label}>
+          <span className="overview-label">{label}</span>
+          <strong>{value}</strong>
+          <p>{description}</p>
+        </article>
+      ))}
     </section>
   );
 }

@@ -1,5 +1,19 @@
+
 import "./DashboardHeader.css";
+
 function DashboardHeader() {
+  let profile = {};
+
+  try {
+    profile = JSON.parse(
+      sessionStorage.getItem("studentProfile") || "{}"
+    );
+  } catch {
+    profile = {};
+  }
+
+  const studentName = profile.name || "Student";
+
   return (
     <header className="dashboard-header">
       <div>
@@ -13,11 +27,13 @@ function DashboardHeader() {
       </div>
 
       <div className="dashboard-profile">
-        <div className="profile-avatar">S</div>
+        <div className="profile-avatar">
+          {profile.name ? profile.name.charAt(0).toUpperCase() : "?"}
+        </div>
 
         <div>
-          <strong>Sanjay</strong>
-          <span>IT Student</span>
+          <strong>{studentName}</strong>
+          <span>{profile.department || "Student"}</span>
         </div>
       </div>
     </header>

@@ -1,5 +1,18 @@
+
 import "./Home.css";
+
 function Home() {
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <main id="home">
       <section className="hero">
@@ -19,11 +32,19 @@ function Home() {
           </p>
 
           <div className="hero-actions">
-            <button className="hero-primary">
+            <button
+              type="button"
+              className="hero-primary"
+              onClick={() => scrollToSection("analyzer")}
+            >
               Analyze My Skills
             </button>
 
-            <button className="hero-secondary">
+            <button
+              type="button"
+              className="hero-secondary"
+              onClick={() => scrollToSection("how-it-works")}
+            >
               Explore How It Works
             </button>
           </div>
