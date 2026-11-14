@@ -101,7 +101,7 @@ function Analyzer() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8001/analyze-skill-gap",
+        `${import.meta.env.VITE_API_URL}/analyze-skill-gap`,
         {
           method: "POST",
           body: formData,
